@@ -1,0 +1,56 @@
+﻿@page "/studentlist"
+<div>
+    <a href="@($"studentcreate")">Create a new student</a>
+</div>
+
+@if (Students is null)
+{
+    <p><em>Loading ...</em></p>
+}
+else
+{
+<table class="table table-hover">
+    
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Students.Count > 0)
+        {
+            @foreach (var student in Students)
+            {
+                <tr>
+                    <td class="row_form"><img src="images/@student.PhotoUrl" alt="Alternate Text" class="img_form" /></td>
+                    <td class="row_form">@student.StudentId</td>
+                    <td class="row_form">@student.Name</td>
+                    <td class="row_form">@student.LastName</td>
+                    <td class="row_form">@student.Email</td>
+                    <td class="row_form">
+                        <a href="@($"studentdetails/{student.StudentId}")">Details</a> |
+                        <a href="@($"studentedit/{student.StudentId}")">Edit</a> |
+                        <button class="btn btn-link" @onclick="e=>Delete_Click(student)">Delete</button>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-danger">No student</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+}
+<Confirm @ref="DeleteConfirmation" 
+         ConfirmationChanged="ConfirmDelete_Click" 
+         ConfirmationMessage="@($"Are you sure you want to delete")"
+         ConfirmationTitle="Confirm delete" />

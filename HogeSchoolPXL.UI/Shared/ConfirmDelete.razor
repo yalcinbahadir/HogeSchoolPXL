@@ -1,0 +1,43 @@
+﻿<div >
+    @*<div class="p-1">
+        <b>@Title</b>
+        <hr />
+    </div>*@
+   
+    <div class="p-1">
+        @Message
+        <hr />
+    </div>
+  
+    <div>
+        <button class="btn btn-primary" @onclick="CancelDelete">Close</button>
+        <button class="btn btn-danger" @onclick="Delete">Delete</button>
+    </div>
+</div>
+@using HogeSchoolPXL.Data.Repositories.Abstract
+@code{
+    [Parameter]
+    public string Title { get; set; } = "Title";
+    [Parameter]
+    public string Message { get; set; } = "Modal body text goes here.";
+    [Parameter]
+    public int  Id { get; set; }
+    [Inject]
+    public NavigationManager  Navigator { get; set; }
+    [Inject]
+    public IUnitOfWork UnitOfWork { get; set; }
+    private void CancelDelete()
+    {
+        Navigator.NavigateTo($"studentedit/{Id}");
+    }
+
+    private void Delete()
+    {
+        var student = UnitOfWork.StudentRepo.GetById(Id);
+        if (student is not null)
+        {
+            UnitOfWork.StudentRepo.Delete(student);
+        }
+        Navigator.NavigateTo($"studentlist", true);
+    }
+}

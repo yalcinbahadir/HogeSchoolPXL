@@ -1,0 +1,45 @@
+﻿@page "/studentedit/{id}"
+@using Microsoft.AspNetCore.Components.Forms
+<h3>Student Edit</h3>
+@if (ShowMessageBox)
+{
+    <div class="alert bg-danger text-white col-10">
+        @Message
+    </div>
+}
+<div>
+    <EditForm Model="@Model" OnValidSubmit="HandelValidSubmit">
+        <DataAnnotationsValidator />
+
+        <div>
+            <ValidationSummary />
+            <div class="col-6 mb-2 p-2">
+                <img src="images/@Model.PhotoUrl" alt="Alternate Text" width="100" height="100" />
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-1">Name</label>
+                <InputText @bind-Value="Model.Name" class="form-control col-9" id="name" />
+                <ValidationMessage For="@(()=>Model.Name)" />
+            </div>
+            <div class="form-group row">
+                <label for="lastname" class="col-1">Last name</label>
+                <InputText @bind-Value="Model.LastName" class="form-control col-9" id="lastname" />
+                <ValidationMessage For="@(()=>Model.LastName)" />
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-1">Email</label>
+                <InputText @bind-Value="Model.Email" class="form-control col-9" id="email" />
+                <ValidationMessage For="@(()=>Model.Email)" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-6">
+                <ImageUploader OnPhotoSaved="GetPhotoPath" />
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-danger" @onclick="e=>ConfirmDelete(Model.StudentId)">Delete</button>
+    </EditForm>
+</div>
+
