@@ -1,0 +1,39 @@
+﻿@page "/courses/create"
+@using Microsoft.AspNetCore.Components.Forms
+<div>
+    <h3 class="text-center">Create a new course</h3>
+</div>
+<div>
+    <EditForm Model="@Model" OnValidSubmit="HandelValidSubmit">
+        <DataAnnotationsValidator />
+
+        <div>
+            <ValidationSummary />
+            <div class="form-group row">
+                <label for="coursename" class="col-2">CourseName</label>
+                <InputText @bind-Value="Model.CourseName" class="form-control col-9" id="coursename" />
+                <ValidationMessage For="@(()=>Model.CourseName)" />
+            </div>
+            <div class="form-group row">
+                <label for="studypoints" class="col-2">StudyPoints</label>
+                <InputNumber @bind-Value="Model.StudyPoints" class="form-control col-9" id="studypoints" />
+                <ValidationMessage For="@(()=>Model.StudyPoints)" />
+            </div>
+            <div class="form-group row">
+                <label for="handbook" class="col-2">Handbook</label>
+                <InputSelect @bind-Value="Model.HandbookId" class="form-control col-9" id="handbook">
+                    <option> -- Select a handbook</option>
+                    @foreach (var handbook in Handbooks)
+                    {
+                        <option value="@handbook.HandbookId"> @handbook.Title</option>
+                    }
+                </InputSelect>
+
+                <ValidationMessage For="@(()=>Model.HandbookId)" />
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </EditForm>
+</div>

@@ -1,0 +1,48 @@
+﻿@page "/registrations/list"
+@if (Registrations is null)
+{
+    <p><em>Loading ...</em></p>
+}
+else
+{
+    <div>
+        <a href="@($"registrations/create")">Create a new registration</a>
+    </div>
+    <table class="table table-hover">
+
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Student</th>
+                <th scope="col">Course</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Registrations.Count > 0)
+            {
+                @foreach (var registration in Registrations)
+                {
+                    <tr>
+                        
+                        <td class="row_form">@registration.RegistrationId</td>
+                        <td class="row_form">@registration.Student.Name</td>
+                        <td class="row_form">@registration.Course.CourseName</td>
+                        <td class="row_form">
+                            <a href="@($"registrations/details/{registration.RegistrationId}")">Details</a> |
+                            <a href="@($"registrations/edit/{registration.RegistrationId}")">Edit</a> |
+                            <button class="btn btn-link" @onclick="e=>Delete_Click(registration)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-danger">No registration</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}

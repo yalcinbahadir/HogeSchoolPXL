@@ -12,6 +12,6 @@ namespace HogeSchoolPXL.Domein
         public string CourseName { get; set; }
         public double StudyPoints { get; set; }
         public Handbook Handbook { get; set; }
-        public int HandbookId { get; set; }
+        public int? HandbookId { get; set; }
     }
 }

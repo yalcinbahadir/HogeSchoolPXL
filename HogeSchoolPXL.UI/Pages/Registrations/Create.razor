@@ -1,0 +1,41 @@
+﻿@page "/registrations/create"
+@using Microsoft.AspNetCore.Components.Forms
+<div>
+    <h3 class="text-center">Create a new registration</h3>
+</div>
+<div>
+    <EditForm Model="@Model" OnValidSubmit="HandelValidSubmit">
+        <DataAnnotationsValidator />
+
+        <div>
+            <ValidationSummary />
+            <div class="form-group row">
+                <label for="student" class="col-2">Student</label>
+                <InputSelect @bind-Value="Model.StudentId" class="form-control col-9" id="student">
+                    <option> -- Select a student</option>
+                    @foreach (var student in Students)
+                    {
+                        <option value="@student.StudentId"> @student.Name</option>
+                    }
+                </InputSelect>
+
+                <ValidationMessage For="@(()=>Model.StudentId)" />
+            </div>
+            <div class="form-group row">
+                <label for="course" class="col-2">Course</label>
+                <InputSelect @bind-Value="Model.CourseId" class="form-control col-9" id="course">
+                    <option> -- Select a course</option>
+                    @foreach (var course in Courses)
+                    {
+                        <option value="@course.CourseId"> @course.CourseName</option>
+                    }
+                </InputSelect>
+
+                <ValidationMessage For="@(()=>Model.CourseId)" />
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </EditForm>
+</div>

@@ -10,6 +10,8 @@ namespace HogeSchoolPXL.Data.Repositories.Abstract
     {
         IStudentRepository StudentRepo { get;}
         IHandbookRepository HandbookRepo { get; }
+        ICourseRepository CourseRepo { get; }
+        IRegistrationRepository RegistrationRepo { get; }
         bool SaveChanges();
     }
 }

@@ -1,11 +1,13 @@
 ﻿@page "/handbooks/list"
-
 @if (Handbooks is null)
 {
     <p><em>Loading ...</em></p>
 }
 else
 {
+    <div>
+        <a href="@($"handbooks/create")">Create a new handbook</a>
+    </div>
     <table class="table table-hover">
 
         <thead>
@@ -24,18 +26,19 @@ else
             {
                 @foreach (var handbook in Handbooks)
                 {
-                    <tr>
-                        <td class="row_form"><img src="images/@handbook.PhotoUrl" alt="Alternate Text" class="img_form" /></td>
-                        <td class="row_form">@handbook.HandbookId</td>
-                        <td class="row_form">@handbook.Title</td>
-                        <td class="row_form">@handbook.Price</td>
-                        <td class="row_form">@handbook.Course.CourseName</td>
-                        <td class="row_form">
-                            <a href="@($"handbooks/details/{handbook.HandbookId}")">Details</a> |
-                            <a href="@($"handbooks/edit/{handbook.HandbookId}")">Edit</a> |
-                            <button class="btn btn-link" @onclick="e=>Delete_Click(handbook)">Delete</button>
-                        </td>
-                    </tr>
+            <tr>
+                <td class="row_form"><img src="images/@handbook.PhotoUrl" alt="Alternate Text" class="img_form" /></td>
+                <td class="row_form">@handbook.HandbookId</td>
+                <td class="row_form">@handbook.Title</td>
+                <td class="row_form">@handbook.Price</td>
+                <td class="row_form">@handbook.IssueDate.ToShortDateString()</td>
+                <td class="row_form">@handbook.Course?.CourseName</td>
+                <td class="row_form">
+                    <a href="@($"handbooks/details/{handbook.HandbookId}")">Details</a> |
+                    <a href="@($"handbooks/edit/{handbook.HandbookId}")">Edit</a> |
+                    <button class="btn btn-link" @onclick="e=>Delete_Click(handbook)">Delete</button>
+                </td>
+            </tr>
                 }
             }
             else

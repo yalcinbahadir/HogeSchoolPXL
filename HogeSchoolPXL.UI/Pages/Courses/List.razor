@@ -1,0 +1,48 @@
+﻿@page "/courses/list"
+@if (Courses is null)
+{
+    <p><em>Loading ...</em></p>
+}
+else
+{
+    <div>
+        <a href="@($"courses/create")">Create a new course</a>
+    </div>
+    <table class="table table-hover">
+
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">CourseName</th>
+                <th scope="col">Points</th>
+                <th scope="col">Handbook</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Courses.Count > 0)
+            {
+                @foreach (var course in Courses)
+                {
+                    <tr>                      
+                        <td class="row_form">@course.CourseId</td>
+                        <td class="row_form">@course.CourseName</td>
+                        <td class="row_form">@course.StudyPoints</td>
+                        <td class="row_form">@course.Handbook?.Title</td>
+                        <td class="row_form">
+                            <a href="@($"courses/details/{course.CourseId}")">Details</a> |
+                            <a href="@($"courses/edit/{course.CourseId}")">Edit</a> |
+                            <button class="btn btn-link" @onclick="e=>Delete_Click(course)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-danger">No course</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

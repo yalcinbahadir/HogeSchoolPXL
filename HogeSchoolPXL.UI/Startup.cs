@@ -39,8 +39,10 @@ namespace HogeSchoolPXL.UI
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+            services.AddScoped<IRegistrationRepository, RegistrationRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IHandbookRepository, HandbookRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IFileUpload, FileUpload>();
             services.AddSingleton<WeatherForecastService>();

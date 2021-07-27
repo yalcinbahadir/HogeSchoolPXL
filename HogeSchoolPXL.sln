@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HogeSchoolPXL.Data", "HogeS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HogeSchoolPXL.UI", "HogeSchoolPXL.UI\HogeSchoolPXL.UI.csproj", "{3632AA8D-7301-4326-854B-F6CCB4147A15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PXL.Components", "PXL.Components\PXL.Components.csproj", "{0621D447-DFF6-4134-A196-4FFE29753C5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PXL.Components", "PXL.Components\PXL.Components.csproj", "{0621D447-DFF6-4134-A196-4FFE29753C5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
