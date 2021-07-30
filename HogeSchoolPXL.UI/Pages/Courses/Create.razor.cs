@@ -23,7 +23,8 @@ namespace HogeSchoolPXL.UI.Pages.Courses
         //public MessageBox MessageBox { get; set; }
         protected override void OnInitialized()
         {
-            Handbooks = UnitOfWork.HandbookRepo.GetAll();
+            // Handbooks = UnitOfWork.HandbookRepo.GetAll();
+            Handbooks = UnitOfWork.HandbookRepo.GetHandbooksWithCourses().Where(h => h.Course == null).ToList();
         }
         [Inject]
         public IModalService ModalService { get; set; }

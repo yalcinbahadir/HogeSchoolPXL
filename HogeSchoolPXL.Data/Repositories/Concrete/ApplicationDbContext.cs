@@ -1,4 +1,5 @@
 ﻿using HogeSchoolPXL.Domein;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HogeSchoolPXL.Data.Repositories.Concrete
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }

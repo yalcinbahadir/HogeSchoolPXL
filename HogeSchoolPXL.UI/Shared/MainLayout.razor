@@ -6,13 +6,29 @@
     </div>
 
     <div class="main">
-        <div class="top-row px-4">
-            <a href="registrations/list">Registrations</a>
-            <a href="courses/list">Courses</a>
-            <a href="handbooks/list">Handbooks</a>
-            <a href="studentlist">Students</a>
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        <div class="text-right">
+           
+                <AuthorizeView>
+                    <Authorized>
+                        <a href="registrations/list" class="mr-2">Registrations</a>
+                        <a href="courses/list" class="mr-2">Courses</a>
+                        <a href="handbooks/list" class="mr-2">Handbooks</a>
+                        <a href="studentlist" class="mr-5">Students</a>
+                        <a href="#">Hello, @context.User.Identity.Name</a>
+                        <form action="cookies/logout" method="post" class="d-inline">
+                            <input type="submit" value="logout" class="btn btn-link d-inline" />
+                        </form>
+                    </Authorized>
+                    <NotAuthorized>
+                        <a href="login" class="mr-2">Login</a>
+                        <a href="register" class="mr-5">Register</a>
+                    </NotAuthorized>
+                </AuthorizeView>
+                <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+          
+           
         </div>
+     
         <div class="content px-4">
             @Body
         </div>
